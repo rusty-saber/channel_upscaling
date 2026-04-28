@@ -1,0 +1,14 @@
+{
+  "n_channels": 1,
+  "bes_mean": 1.00050780143485,
+  "bes_std": 0.37241219697627276,
+  "acc_gt_mean": 0.5621212121212121,
+  "acc_pred_mean": 0.5304545454545455,
+  "n_subjects": 22,
+  "target_channels": [
+    "C3",
+    "C4",
+    "P3",
+    "P4"
+  ]
+}

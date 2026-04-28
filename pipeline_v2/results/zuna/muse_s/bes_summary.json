@@ -1,0 +1,14 @@
+{
+  "bes_mean": 0.9391909160757799,
+  "bes_std": 0.3151133157107121,
+  "acc_gt_mean": 0.5621212121212121,
+  "acc_pred_mean": 0.5034848484848484,
+  "n_subjects": 22,
+  "device": "muse_s",
+  "target_channels": [
+    "C3",
+    "C4",
+    "P3",
+    "P4"
+  ]
+}

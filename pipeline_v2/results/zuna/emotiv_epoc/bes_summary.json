@@ -1,0 +1,14 @@
+{
+  "bes_mean": 0.9865754711681504,
+  "bes_std": 0.2988889720979151,
+  "acc_gt_mean": 0.5448333333333333,
+  "acc_pred_mean": 0.513,
+  "n_subjects": 20,
+  "device": "emotiv_epoc",
+  "target_channels": [
+    "C3",
+    "C4",
+    "P3",
+    "P4"
+  ]
+}

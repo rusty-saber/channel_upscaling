@@ -1,0 +1,97 @@
+# Computational EEG Densification — Month 1 Pipeline Configuration
+# Paper: "A Foundation Model for Computational EEG Densification"
+#
+# ZUNA pinned commit: 7b6b858fd36808353bce1b2184ca93695cf68075
+# Install: pip install zuna
+# Ref: arxiv 2602.18478
+#
+# DO NOT change target_fs or epoch_sec — they are ZUNA hard constraints.
+# DO NOT change splits.seed — the 87/22 subject split must be reproducible.
+
+meta:
+  zuna_commit: "7b6b858fd36808353bce1b2184ca93695cf68075"
+  paper: "Computational EEG Densification"
+  month: 1
+
+dataset:
+  name: "PhysioNet EEGMMIDB"
+  n_subjects: 109
+  original_fs: 160     # Hz — native EEGMMIDB sampling rate
+  target_fs: 256       # Hz — ZUNA fixed requirement, cannot be changed
+  epoch_sec: 5.0       # s  — ZUNA fixed requirement, cannot be changed
+  montage: "standard_1005"
+  bandpass_low: 1.0    # Hz — 1.0 not 0.5; ZUNA's highpass is 1 Hz
+  bandpass_high: 45.0  # Hz
+
+splits:
+  n_train: 87          # subjects S001–S087
+  n_test: 22           # subjects S088–S109
+  seed: 42             # FROZEN — do not change
+
+# ZUNA inference parameters
+zuna:
+  data_norm: 10.0              # ZUNA expects data std ≈ 0.1 (divides by this)
+  diffusion_cfg: 1.0           # classifier-free guidance; 1.0 = disabled
+  diffusion_sample_steps: 50
+  tokens_per_batch: 100000
+  apply_notch_filter: false    # already filtered before ZUNA
+  apply_highpass_filter: false # already filtered before ZUNA
+  apply_average_reference: false
+
+# Consumer device layouts simulated by channel masking.
+# All channel names use MNE standard_1005 convention (case-sensitive).
+# 'train_device: true' marks Device A (model trained on this layout).
+devices:
+  emotiv_epoc:
+    input_channels: ["AF3", "AF4", "F3", "F4"]
+    description: "Emotiv EPOC — 4 frontal channels"
+    train_device: true        # Device A — ZUNA trained on this layout
+
+  muse_s:
+    input_channels: ["AF7", "AF8", "T9", "T10"]
+    description: "Muse S — 4 temporal-frontal channels"
+    train_device: false       # Device B — zero-shot cross-device test
+    note: >
+      T9/T10 are the closest EEGMMIDB positions to Muse's TP9/TP10.
+      TP9/TP10 are not in the standard 10-10 montage used by EEGMMIDB.
+
+  openbci_cyton:
+    input_channels: ["C3", "C4", "P3", "P4", "Fz", "Cz"]
+    description: "OpenBCI Cyton — 6 sensorimotor channels"
+    train_device: false       # Device C — zero-shot cross-device test
+
+# Initial reconstruction targets for Month 1–2 experiments.
+# These are the first 4 channels evaluated; scaling law uses all 64.
+initial_targets: ["C3", "C4", "P3", "P4"]
+
+# Expansion scaling law experiments (Month 4)
+scaling_law:
+  x2:  {n_output: 8,  description: "4 → 8 channels"}
+  x4:  {n_output: 16, description: "4 → 16 channels"}
+  x8:  {n_output: 32, description: "4 → 32 channels"}
+  x16: {n_output: 64, description: "4 → 64 channels"}
+
+# Evaluation suite — all conditions report all four metrics
+eval:
+  bands:
+    delta: [0.5,  4.0]
+    theta: [4.0,  8.0]
+    alpha: [8.0,  13.0]
+    beta:  [13.0, 30.0]
+    gamma: [30.0, 45.0]
+  # Phase coherence computed between these pairs (input → target)
+  phase_coherence_pairs:
+    - ["F3",  "C3"]
+    - ["F4",  "C4"]
+  # BES: downstream motor-imagery LDA classifier
+  bes_classifier: "lda"
+  bes_mi_runs: [5, 6, 9, 10, 13, 14]   # PhysioNet MI annotation runs
+  bes_threshold_acceptable: 0.90        # BES ≥ 0.90 = acceptable for deployment
+  bes_threshold_useful: 0.80            # BES ≥ 0.80 = useful but limited
+
+# Filesystem paths (all relative to working directory root)
+paths:
+  raw_dir:      "pipeline_v2/data/raw"
+  fif_dir:      "pipeline_v2/data/fif"
+  zuna_dir:     "pipeline_v2/data/zuna_work"
+  results_dir:  "pipeline_v2/results"

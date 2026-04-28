@@ -1,0 +1,14 @@
+{
+  "bes_mean": 1.1855441921433156,
+  "bes_std": 0.4602814644560784,
+  "acc_gt_mean": 0.4763636363636362,
+  "acc_pred_mean": 0.5166666666666666,
+  "n_subjects": 22,
+  "device": "openbci_cyton",
+  "target_channels": [
+    "T7",
+    "T8",
+    "FC5",
+    "FC6"
+  ]
+}

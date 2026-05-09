@@ -2,9 +2,16 @@
 # EEG Densification — .gitignore
 # =============================================================
 
-# ------ Large EEG data files (PhysioNet restricted license) --
+# ------ Large EEG data files (re-downloadable via download_eegmmidb.py) ------
 pipeline_v2/data/fif/
+pipeline_v2/data/fif_mi/
+pipeline_v2/data/raw/
 pipeline_v2/data/zuna_work/
+pipeline_v2/data/zuna_work_matched/
+
+# ------ Node (used by figure build scripts only) ----------------------
+node_modules/
+package-lock.json
 
 # ------ PyTorch checkpoints and intermediate tensors ---------
 *.pt

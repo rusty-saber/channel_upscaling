@@ -1,0 +1,26 @@
+# Pinned requirements for one-shot GPU rental run.
+# Tighter than pipeline_v2/requirements.txt — locks every version to remove
+# any chance of a surprise dependency-resolution stall on the paid clock.
+#
+# Tested target: Python 3.11, CUDA 11.8, PyTorch 2.1.x.
+
+# Core EEG
+mne==1.6.1
+
+# ZUNA pinned to the project's frozen commit (matches configs/config.yaml meta.zuna_commit)
+git+https://github.com/Zyphra/zuna.git@7b6b858fd36808353bce1b2184ca93695cf68075
+
+# Scientific stack
+numpy==1.26.4
+scipy==1.11.4
+scikit-learn==1.3.2
+
+# Utilities
+tqdm==4.66.1
+pyyaml==6.0.1
+
+# Plotting (only used if you regenerate figures on the instance — optional)
+matplotlib==3.8.2
+
+# PyTorch — install separately with the correct CUDA wheel index, see instance_run.sh:
+#   pip install torch==2.1.2 --index-url https://download.pytorch.org/whl/cu118

@@ -1,0 +1,53 @@
+PHASE 2 STATISTICS REPORT
+================================================================================
+
+Paired Wilcoxon signed-rank test (two-sided), n=22 subjects per cell
+Holm-Bonferroni corrected p-values across all comparisons per device
+Bootstrap 95% CI on mean difference (10 000 resamples, seed=42)
+Effect size: Cliff's delta  (|d|<0.147 negligible, <0.33 small, <0.474 medium, else large)
+
+
+EMOTIV_EPOC
+--------------------------------------------------------------------------------
+  Comparison               Metric              mean_a  mean_b   Δmean                 95% CI    p_adj  sig   delta          eff
+  -------------------------------------------------------------------------------------------------------------------
+  reve vs ssi              pearson_mean         0.388   0.673  +0.285         [+0.221, +0.347]   0.0000  ***  +0.860        large
+  zuna vs ssi              pearson_mean         0.388   0.619  +0.230         [+0.161, +0.296]   0.0001  ***  +0.826        large
+  zuna vs reve             pearson_mean         0.673   0.619  -0.054         [-0.075, -0.034]   0.0003  ***  -0.285        small
+  reve vs ssi              mse_mean             0.000   0.000  -0.000         [-0.000, -0.000]   0.0000  ***  -0.587        large
+  zuna vs ssi              mse_mean             0.000   0.000  -0.000         [-0.000, -0.000]   0.0000  ***  -0.607        large
+  zuna vs reve             mse_mean             0.000   0.000  -0.000         [-0.000, +0.000]   0.1563   ns  -0.302        small
+  reve vs ssi              beta_mean_ratio     10.820   0.000 -10.819        [-16.916, -5.947]   0.0000  ***  -1.000        large
+  zuna vs ssi              beta_mean_ratio     10.820   0.398 -10.422        [-16.382, -5.576]   0.0000  ***  -1.000        large
+  zuna vs reve             beta_mean_ratio      0.000   0.398  +0.398         [+0.343, +0.452]   0.0000  ***  +1.000        large
+  reve vs ssi              bes                  0.959   0.981  +0.022         [-0.012, +0.055]   0.9626   ns  +0.099   negligible
+
+MUSE_S
+--------------------------------------------------------------------------------
+  Comparison               Metric              mean_a  mean_b   Δmean                 95% CI    p_adj  sig   delta          eff
+  -------------------------------------------------------------------------------------------------------------------
+  reve vs ssi              pearson_mean         0.542   0.549  +0.007         [-0.020, +0.037]   1.0000   ns  +0.066   negligible
+  zuna vs ssi              pearson_mean         0.542   0.446  -0.097         [-0.207, -0.019]   0.1508   ns  -0.252        small
+  zuna vs reve             pearson_mean         0.549   0.446  -0.104         [-0.230, -0.021]   0.1204   ns  -0.318        small
+  reve vs ssi              mse_mean             0.000   0.000  -0.000         [-0.000, +0.000]   1.0000   ns  -0.033   negligible
+  zuna vs ssi              mse_mean             0.000   0.000  -0.000         [-0.000, -0.000]   0.0000  ***  -0.347       medium
+  zuna vs reve             mse_mean             0.000   0.000  -0.000         [-0.000, -0.000]   0.0034   **  -0.360       medium
+  reve vs ssi              beta_mean_ratio      0.685   0.000  -0.685         [-0.844, -0.542]   0.0000  ***  -1.000        large
+  zuna vs ssi              beta_mean_ratio      0.685   0.169  -0.516         [-0.666, -0.381]   0.0000  ***  -0.963        large
+  zuna vs reve             beta_mean_ratio      0.000   0.169  +0.169         [+0.132, +0.210]   0.0000  ***  +1.000        large
+  reve vs ssi              bes                  0.999   0.962  -0.037         [-0.076, +0.001]   0.3657   ns  -0.149        small
+
+OPENBCI_CYTON
+--------------------------------------------------------------------------------
+  Comparison               Metric              mean_a  mean_b   Δmean                 95% CI    p_adj  sig   delta          eff
+  -------------------------------------------------------------------------------------------------------------------
+  reve vs ssi              pearson_mean         0.704   0.725  +0.021         [-0.004, +0.051]   1.0000   ns  +0.079   negligible
+  zuna vs ssi              pearson_mean         0.704   0.659  -0.045         [-0.090, +0.012]   0.0556   ns  -0.339       medium
+  zuna vs reve             pearson_mean         0.725   0.659  -0.066         [-0.094, -0.032]   0.0034   **  -0.368       medium
+  reve vs ssi              mse_mean             0.000   0.000  -0.000         [-0.000, +0.000]   0.0175    *  +0.326        small
+  zuna vs ssi              mse_mean             0.000   0.000  -0.000         [-0.000, -0.000]   0.1248   ns  -0.153        small
+  zuna vs reve             mse_mean             0.000   0.000  -0.000         [-0.000, -0.000]   0.0009  ***  -0.488        large
+  reve vs ssi              beta_mean_ratio      5.944   0.001  -5.944        [-15.675, -0.976]   0.0000  ***  -1.000        large
+  zuna vs ssi              beta_mean_ratio      5.944   0.778  -5.166        [-14.843, -0.283]   0.0000  ***  -0.504        large
+  zuna vs reve             beta_mean_ratio      0.001   0.778  +0.778         [+0.646, +0.927]   0.0000  ***  +1.000        large
+  reve vs ssi              bes                  1.056   0.994  -0.062         [-0.107, -0.018]   0.1248   ns  -0.209        small
